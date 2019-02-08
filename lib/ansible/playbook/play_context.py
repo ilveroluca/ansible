@@ -21,8 +21,9 @@
 from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
-import os
-import pwd
+import getpass
+# import os
+# import pwd
 import random
 import re
 import string
@@ -430,7 +431,8 @@ class PlayContext(Base):
         if new_info.connection == 'local':
             if not new_info.connection_user:
                 new_info.connection_user = new_info.remote_user
-            new_info.remote_user = pwd.getpwuid(os.getuid()).pw_name
+            # new_info.remote_user = pwd.getpwuid(os.getuid()).pw_name
+            new_info.remote_user = getpass.getuser()
 
         # set no_log to default if it was not previously set
         if new_info.no_log is None:
